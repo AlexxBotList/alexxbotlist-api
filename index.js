@@ -9,7 +9,7 @@ module.exports = class VOID {
     async serverCount(message) {
   if(this.client.shard) {
     let serverCountReduce = await this.client.shard.fetchClientValues('guilds.cache.size');
-    fetch(`https://alexxbotlist.tk/api/bots/stats`, {
+    fetch(`https://alexxbotlist.xyz/api/bots/stats`, {
       method: 'POST',
       headers: {
         'serverCount': serverCountReduce.reduce((acc, guildCount) => acc + guildCount, 0),
@@ -18,9 +18,9 @@ module.exports = class VOID {
         'Authorization': this.token
       },
   })
-  .then(console.log(message || "Server count & shard count posted on AlexxBotList.tk."));
+  .then(console.log(message || "Server count & shard count posted on AlexxBotList.xyz."));
   } else {
-  fetch(`https://alexxbotlist.tk/api/bots/stats`, {
+  fetch(`https://alexxbotlist.xyz/api/bots/stats`, {
         method: 'POST',
         headers: { 
           'serverCount': this.client.guilds.cache.size,
@@ -28,19 +28,19 @@ module.exports = class VOID {
           'Authorization': this.token
         },
     })
-    .then(console.log(message || "Server count posted on AlexxBotList.tk."));
+    .then(console.log(message || "Server count posted on AlexxBotList.xyz."));
    }
   }
   
   async search(id) {
-  return await fetch(`https://alexxbotlist.tk/api/bots/${id}`, {
+  return await fetch(`https://alexxbotlist.xyz/api/bots/${id}`, {
         method: 'GET'
     })
     .then(res => res.json()).then(json => json);
   }
   
   async hasVoted(id) {
-  return await fetch(`https://alexxbotlist.tk/api/bots/check/${id}`, {method: 'GET',headers: { 
+  return await fetch(`https://alexxbotlist.xyz/api/bots/check/${id}`, {method: 'GET',headers: { 
     'Content-Type': 'application/json', 'Authorization': this.token
   }
   }).then(res => res.json()).then(async json => json.voted);
